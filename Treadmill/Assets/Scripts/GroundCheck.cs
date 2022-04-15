@@ -2,24 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleMovement : MonoBehaviour
+public class GroundCheck : MonoBehaviour
 {
-    bool onTreadmill;
-    public float treadmillSpeed;
-
-    void FixedUpdate()
-    {
-        if (onTreadmill)
-        {
-            transform.Translate(-1f * treadmillSpeed, 0f, 0f);
-        }
-    }
-
     void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Treadmill")
         {
-            onTreadmill = true;
+            transform.parent.GetComponent<PlayerController>().groundCheck = true;
         }
     }
 
@@ -27,7 +16,7 @@ public class ObstacleMovement : MonoBehaviour
     {
         if (collider.gameObject.tag == "Treadmill")
         {
-            onTreadmill = false;
+            transform.parent.GetComponent<PlayerController>().groundCheck = false;
         }
     }
 }
