@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     // components
     Rigidbody2D rigidbody;
 
+    public float jumpForce;
     bool grounded;
 
     // Start is called before the first frame update
@@ -20,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            rigidbody.AddForce(transform.up * 10f);
+            rigidbody.AddForce(transform.up * jumpForce);
         }
     }
 
@@ -28,7 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.gameObject.tag == "Treadmill")
         {
-            print("true");
             grounded = true;
         }
     }
